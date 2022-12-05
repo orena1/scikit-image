@@ -351,9 +351,10 @@ def blob_dog(image, min_sigma=1, max_sigma=50, sigma_ratio=1.6, threshold=0.5,
     # a geometric progression of standard deviations for gaussian kernels
     sigma_list = np.array([min_sigma * (sigma_ratio ** i)
                            for i in range(k + 1)])
-
-    gaussian_images = [gaussian(image, s, mode='reflect') for s in sigma_list]
-
+    gaussian_images  =[]
+    for s in sigma_list:
+        gaussian_images.append(gaussian(image, s, mode='reflect'))
+    
     # normalization factor for consistency in DoG magnitude
     sf = 1 / (sigma_ratio - 1)
 
